@@ -66,10 +66,10 @@ namespace Shop
             });
 
             // Config do EF com database em memória
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("MyMemoryDatabase"));
+            //services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("MyMemoryDatabase"));
 
             //Config do EF com databse real
-            //services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
 
             // toda requisição cria um datacontext na memória, toda vez que algúem pedir um ddatacontext é devolvido o da memória
             // quando a requisição acaba o datacontext é destruído e consequentemente fechando a conexão com o banco.

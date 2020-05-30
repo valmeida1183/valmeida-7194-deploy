@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,23 @@ namespace Shop.Controllers
             {
                message = "Dados Configurados"     
             });
+        }
+
+        [HttpGet("compression-test")]
+        [AllowAnonymous]        
+        public ActionResult<dynamic> GetCompressionTest()
+        {
+            dynamic data = new List<string>();  
+            for (int i = 1; i <= 100; i++)  
+            {  
+                data.Add("ID :" + i.ToString());  
+                data.Add("Name :" + i.ToString());  
+                data.Add("Address :" + i.ToString());  
+                data.Add("Email :" + i.ToString());  
+                data.Add("Telephone :" + i.ToString());  
+            }
+             
+           return Ok(data);  
         }        
     }    
 }

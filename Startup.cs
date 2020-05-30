@@ -33,9 +33,10 @@ namespace Shop
             // Configura o Gzip e compacta todo o response que for do mimeType "application/json"
             services.AddResponseCompression(opt =>
             {
+                opt.EnableForHttps = true;
                 opt.Providers.Add<GzipCompressionProvider>();
-                opt.MimeTypes.Concat(new[] { "application/json" });
-            });
+                opt.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "application/json; charset=utf-8" });
+            });            
 
             //para cachear toda a aplicação, o melhor é definir o cache por endepoint
             //services.AddResponseCaching();
@@ -91,13 +92,13 @@ namespace Shop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            /* if (env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            } */
+            }
 
-            app.UseDeveloperExceptionPage();
-
+            /* app.UseDeveloperExceptionPage(); */
+            app.UseResponseCompression();
             app.UseSwagger();
             app.UseSwaggerUI(c => 
             {

@@ -72,7 +72,7 @@ namespace Shop
             //Config do EF com databse real
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
 
-            // toda requisição cria um datacontext na memória, toda vez que algúem pedir um ddatacontext é devolvido o da memória
+            // toda requisição cria um datacontext na memória, toda vez que algúem pedir um datacontext é devolvido o da memória
             // quando a requisição acaba o datacontext é destruído e consequentemente fechando a conexão com o banco.
             
             //services.AddScoped<DataContext, DataContext>(); --> No asp.netCore 3.0+ não é mais necessário essa linha pois o "services.AddDbContext<DataContext>" já faz isso por debaixo dos panos 

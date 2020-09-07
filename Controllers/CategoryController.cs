@@ -15,7 +15,7 @@ namespace Shop.Controllers
         [HttpGet]
         [AllowAnonymous]
         [ResponseCache(VaryByHeader = "User-Agent", Location = ResponseCacheLocation.Any, Duration = 30)]
-        // quando o cacho está definido no startup e se deseja remover o cache do endpoint.
+        // quando o cache está definido no startup e se deseja remover o cache do endpoint.
         /* [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]  */ 
         public async Task<ActionResult<List<Category>>> Get(
             [FromServices] DataContext context)
